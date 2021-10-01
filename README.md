@@ -1,6 +1,6 @@
 # project-t04-youtubevoice
 
-Our goal is to make all YouTube videos have a Russian accent.
+Attemping to answer the question: What if everyone had a russian female accent...?
 
 ## Current Tasks
 
