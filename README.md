@@ -16,7 +16,7 @@ Haolan Li - Subtitle storage and XML parsing
 
 Aditya Gupta - Timestamp counter with skipping 
 
-## Usage
+## Things to do
 
 Bisman Sodhi - Work on pause/play recognizer for timestamp
 
