@@ -1,24 +1,37 @@
 console.log("Initing youtube script...");
 
+// Global variable for the controller
 export var YoutubeController = {
-    movie_player: {},
+    movie_player: {}, // youtube HTML5 player
+    player_initialized: false,
 };
+
+chrome.runtime.sendMessage(
+    {
+      command: "fetch-cc",
+      data: {
+        video_id: new URL(window.location.href).searchParams.get("v"),
+      }
+    }, function(response) {
+    console.log(response);
+  }
+);
 
 YoutubeController.init = function() {
     console.log(window.location.href);
 
     window.addEventListener('DOMContentLoaded', function () {
 
-        chrome.runtime.sendMessage(
-            {
-              command: "fetch-cc",
-              data: {
-                video_id: new URL(window.location.href).searchParams.get("v"),
-              }
-            }, function(response) {
-            console.log(response);
-          }
-        );
+        // chrome.runtime.sendMessage(
+        //     {
+        //       command: "fetch-cc",
+        //       data: {
+        //         video_id: new URL(window.location.href).searchParams.get("v"),
+        //       }
+        //     }, function(response) {
+        //     console.log(response);
+        //   }
+        // );
     });
 
     this.observer = new MutationObserver(function(mutationList) {
@@ -32,7 +45,11 @@ YoutubeController.init = function() {
                         id = node.id;
 
                     if (id === 'movie_player') {
-                        YoutubeController.movie_player = node;
+                        if (!YoutubeController.player_initialized) {
+                            YoutubeController.movie_player = node;
+                            YoutubeController.player_initialized = true;
+                            YoutubeController.onPlayerReady();
+                        }
                     }
                 }
             }
@@ -50,4 +67,21 @@ YoutubeController.init = function() {
 
 YoutubeController.getCurrentTime = function() {
     return this.movie_player?.getCurrentTime();
+}
+
+YoutubeController.onPlayerReady = function() {
+    var videotime = null;
+
+    function updateTime() {
+        let oldTime = videotime;
+        videotime = this.movie_player?.getCurrentTime();
+        if(videotime !== oldTime) {
+          YoutubeController.onTimeUpdated(videotime);
+        }
+      }
+      timeupdater = setInterval(updateTime, 500);
+}
+
+YoutubeController.onTimeUpdated = function(ts) {
+    console.log(ts);
 }

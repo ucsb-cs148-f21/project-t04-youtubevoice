@@ -1,4 +1,4 @@
-import {parser} from 'fast-xml-parser';
+var parser = require('fast-xml-parser');
 
 console.log("Background script working...");
 
@@ -8,19 +8,21 @@ chrome.runtime.onMessage.addListener(
                 "from a content script:" + sender.tab.url :
                 "from the extension");
 
+    console.log(request);
+
     switch (request.command) {
       case "fetch-cc":
         await fetch_cc(request.data.video_id);
     }
 
-    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-      chrome.tabs.sendMessage(tabs[0].id, {command: "talk", data: {
-        content: "hello world!"
-      }
-    }, function(response) {
-        console.log(response.farewell);
-      });
-    });
+    // chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+    //   chrome.tabs.sendMessage(tabs[0].id, {command: "talk", data: {
+    //     content: "hello world!"
+    //   }
+    // }, function(response) {
+    //     console.log(response.farewell);
+    //   });
+    // });
 
     sendResponse({farewell: "goodbye"});
   }

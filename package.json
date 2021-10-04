@@ -14,7 +14,7 @@
     "webext-prod": {}
   },
   "scripts": {
-    "start": "parcel manifest.json --no-hmr --target webext-dev --config @parcel/config-webextension",
+    "start": "parcel manifest.json --target webext-dev --config @parcel/config-webextension",
     "build": "parcel build manifest.json --config @parcel/config-webextension"
   },
   "dependencies": {
