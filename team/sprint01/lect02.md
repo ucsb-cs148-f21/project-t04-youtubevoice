@@ -21,4 +21,4 @@ Haolan was working on Mapping timestamp to subtitles.
 
 Kaleb made a 'hello world' Chrome extension program to get the timestamp of the current Youtube video and was work.
 
-Hunter 
+Hunter  made a 'hello world' Chrome extension program to display "hello world" at console.
