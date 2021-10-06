@@ -1,6 +1,7 @@
-let color = '#3aa757';
-
-chrome.runtime.onInstalled.addListener(() => {
-  chrome.storage.sync.set({ color });
-  console.log('Default background color set to %cgreen', `color: ${color}`);
+chrome.tabs.onActivated.addListener(tab => {
+    chrome.tabs.get(tab.tabId,current_tab_info =>{
+        if(/^https:\/\/www\.youtube/.test(current_tab_info.url)){
+            chrome.tabs.executeScript(null,{file: './foreground.js'},() => console.log('This is a Youtube page'))
+        }
+    });
 });
