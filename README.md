@@ -1,6 +1,6 @@
 # project-t04-youtubevoice
 
-Attemping to answer the question: What if everyone had a russian female accent...?
+Attemping to answer the question: What if Prof H. had a russian female accent...?
 
 ## Current Tasks
 
