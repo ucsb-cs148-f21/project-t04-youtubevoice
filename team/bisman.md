@@ -1,0 +1,1 @@
+My name is Bisman. I have prior experience with cpp and js. I would like to add a variety of voices to this extension so that users can chose which voice they want to change the video to. 
