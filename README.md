@@ -4,30 +4,28 @@ Attemping to answer the question: What if Prof H. had a russian female accent...
 
 ## Current Tasks
 
-Bisman Sodhi - Pause/play recognizer for timestamp
+Bisman Sodhi, Kaleb Guo - Binary search
 
-Lauren Daniel - Docs
+Lauren Daniel - Gone
 
-Hunter Massey - Literally no idea
+Hunter Massey - .md jenga
 
-Kaleb Guo - Docs
+Haolan Li - Speech synthesis
 
-Haolan Li - Subtitle storage and XML parsing 
-
-Aditya Gupta - Timestamp counter with skipping 
+Aditya Gupta - Speed stuff
 
 ## Things to do
 
-Bisman Sodhi - Work on pause/play recognizer for timestamp
+Bisman Sodhi - Everything
 
-Lauren Daniel - Organize the docs, work on Subtitle parsing 
+Lauren Daniel - Nothing
 
-Hunter Massey - Learn JS
+Hunter Massey - Something
 
-Kaleb Guo - Learn JS
+Kaleb Guo - Everything else
 
-Haolan Li - Work on Subtitle parsing  
+Haolan Li - Nothing else
 
-Aditya Gupta - Work on Subtitle parsing
+Aditya Gupta - Something else
 
 
