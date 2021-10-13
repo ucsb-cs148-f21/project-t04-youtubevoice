@@ -12,7 +12,27 @@ chrome.runtime.onMessage.addListener(
 
     switch (request.command) {
       case "fetch-cc":
-        await fetch_cc(request.data.video_id);
+        let local_subtitle = await fetch_cc(request.data.video_id);
+        console.log(local_subtitle);
+        console.log("Hello, this is your text")
+
+        const local_time = []; 
+        const local_text = []; 
+
+        for (let i = 0; i < local_subtitle.length; i++) {
+          local_time.push( local_subtitle[i].begin);
+          local_text.push( local_subtitle[i].text); 
+        }
+
+        let goal = 15; // replace this with the actual time stamp from the front 
+
+        var closest = local_time.reduce(function(prev, curr) {
+          return (Math.abs(curr - goal) < Math.abs(prev - goal) ? curr : prev);
+        });
+        var index_text = local_time.indexOf(closest);
+        
+
+        console.log(local_text[index_text]);
     }
 
     // chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
@@ -37,7 +57,7 @@ async function fetch_cc(video_id) {
 
   let subtitles = (await p) ?? (await download_cc(video_id));
 
-  console.log(subtitles);
+  return subtitles;
 }
 
 

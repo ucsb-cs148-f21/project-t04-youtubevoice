@@ -17,6 +17,15 @@ chrome.runtime.sendMessage(
   }
 );
 
+
+
+
+
+
+
+
+
+
 YoutubeController.init = function() {
     console.log(window.location.href);
 
