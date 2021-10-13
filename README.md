@@ -28,4 +28,8 @@ Haolan Li - Nothing else
 
 Aditya Gupta - Something else
 
+## Tech Stack
+
+We are using vanilla Javascript with Google Chrome web APIs, HTML, and CSS.
+
 
