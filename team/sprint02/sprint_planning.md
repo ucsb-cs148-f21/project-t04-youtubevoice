@@ -6,7 +6,7 @@
 Sprint goal: finish MVP
 
 Added user story:
-As a home cook, I can listen to video tutorials out loud in my own language so that I can cook at the same time.
+As a home cook, I can listen to video tutorials out loud in my own accent so that I can cook at the same time.
 
 # Technical tasks:
 
