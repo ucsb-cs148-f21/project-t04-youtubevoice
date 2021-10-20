@@ -2,7 +2,7 @@
   "name": "YouTube Voice",
   "description": "Make your browser speak!",
   "version": "1.0",
-  "manifest_version": 3,
+  "manifest_version": 2,
   "background": {
     "service_worker": "background.js"
   },
