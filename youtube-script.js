@@ -6,9 +6,18 @@ export var YoutubeController = {
     player_initialized: false,
 };
 
+chrome.runtime.onMessage.addListener(
+    function(request, sender, sendResponse) {
+      if (request.greeting === "hello"){
+          console.log("Working")
+      }
+        sendResponse({farewell: "goodbye"});
+    }
+  );
+
 chrome.runtime.sendMessage(
     {
-      command: "fetch-cc",
+      command: "fetch-cc", 
       data: {
         video_id: new URL(window.location.href).searchParams.get("v"),
       }
@@ -16,17 +25,6 @@ chrome.runtime.sendMessage(
     console.log(response);
   }
 );
-
-
-
-
-
-
-
-
-
-
-
 
 YoutubeController.init = function() {
     console.log(window.location.href);
@@ -45,6 +43,7 @@ YoutubeController.init = function() {
         // );
     });
 
+    // 
     this.observer = new MutationObserver(function(mutationList) {
         for (var i = 0, l = mutationList.length; i < l; i++) {
             var mutation = mutationList[i];
@@ -76,10 +75,12 @@ YoutubeController.init = function() {
     console.log("Initialized.");
 }
 
+// Get's the time
 YoutubeController.getCurrentTime = function() {
     return this.movie_player?.getCurrentTime();
 }
 
+// When player playing then timestamp is fetched
 YoutubeController.onPlayerReady = function() {
     var videotime = null;
 
@@ -93,6 +94,17 @@ YoutubeController.onPlayerReady = function() {
       timeupdater = setInterval(updateTime, 500);
 }
 
+// Executes on timestamp update
 YoutubeController.onTimeUpdated = function(ts) {
-    console.log(ts);
+    chrome.runtime.sendMessage(
+        {
+          command: "send-timestamp", 
+          data: {
+            ts: ts,
+          }
+        }, function(response) {
+        console.log(response);
+      }
+    );
 }
+

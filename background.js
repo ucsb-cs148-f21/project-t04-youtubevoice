@@ -1,6 +1,9 @@
 var parser = require('fast-xml-parser');
 
 console.log("Background script working...");
+//const local_text = []; //this was inside function but I moved it because I want to use in into another function to send text from background to content script. 
+
+let passSubtitleBackToFront;
 
 chrome.runtime.onMessage.addListener(
   async function(request, sender, sendResponse) {
@@ -9,6 +12,14 @@ chrome.runtime.onMessage.addListener(
                 "from the extension");
 
     console.log(request);
+
+    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+      console.log("tab id:", tabs);
+    
+      chrome.tabs.sendMessage(tabs[0].id, {greeting: "hello"}, function(resp) {
+        console.log(resp);
+      });
+    });    
 
     switch (request.command) {
       case "fetch-cc":
@@ -24,15 +35,19 @@ chrome.runtime.onMessage.addListener(
           local_text.push( local_subtitle[i].text); 
         }
 
-        let goal = 15; // replace this with the actual time stamp from the front 
+        let goal = 38; // replace this with the actual time stamp from the front 
 
         var closest = local_time.reduce(function(prev, curr) {
           return (Math.abs(curr - goal) < Math.abs(prev - goal) ? curr : prev);
         });
         var index_text = local_time.indexOf(closest);
         
-
+        //passSubtitleBackToFront[local_text[index_text]]; // = local_text[index_text];
+        passSubtitleBackToFront = local_text[index_text];
+        console.log("Testing " + passSubtitleBackToFront);
         console.log(local_text[index_text]);
+      case "send-timestamp":
+        console.log("send-timestamp:", request.data);
     }
 
     // chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
@@ -47,6 +62,7 @@ chrome.runtime.onMessage.addListener(
     sendResponse({farewell: "goodbye"});
   }
 );
+
 
 async function fetch_cc(video_id) {
   let p = new Promise(function(resolve, reject){
