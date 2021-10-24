@@ -1,6 +1,9 @@
 var parser = require('fast-xml-parser');
 
 console.log("Background script working...");
+//const local_text = []; //this was inside function but I moved it because I want to use in into another function to send text from background to content script. 
+
+let passSubtitleBackToFront;
 
 chrome.runtime.onMessage.addListener(
   async function(request, sender, sendResponse) {
@@ -10,23 +13,43 @@ chrome.runtime.onMessage.addListener(
 
     console.log(request);
 
+    chrome.tabs.sendMessage(sender.tab.id, {greeting: "hello"}, function(resp) {
+      console.log(resp);
+    });
+
     switch (request.command) {
       case "fetch-cc":
-        await fetch_cc(request.data.video_id);
-    }
+        let local_subtitle = await fetch_cc(request.data.video_id);
+        console.log(local_subtitle);
+        console.log("Hello, this is your text")
 
-    // chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-    //   chrome.tabs.sendMessage(tabs[0].id, {command: "talk", data: {
-    //     content: "hello world!"
-    //   }
-    // }, function(response) {
-    //     console.log(response.farewell);
-    //   });
-    // });
+        const local_time = []; 
+        const local_text = []; 
+
+        for (let i = 0; i < local_subtitle.length; i++) {
+          local_time.push( local_subtitle[i].begin);
+          local_text.push( local_subtitle[i].text); 
+        }
+
+        let goal = 38; // replace this with the actual time stamp from the front 
+
+        var closest = local_time.reduce(function(prev, curr) {
+          return (Math.abs(curr - goal) < Math.abs(prev - goal) ? curr : prev);
+        });
+        var index_text = local_time.indexOf(closest);
+        
+        //passSubtitleBackToFront[local_text[index_text]]; // = local_text[index_text];
+        passSubtitleBackToFront = local_text[index_text];
+        console.log("Testing " + passSubtitleBackToFront);
+        console.log(local_text[index_text]);
+      case "send-timestamp":
+        console.log("send-timestamp:", request.data);
+    }
 
     sendResponse({farewell: "goodbye"});
   }
 );
+
 
 async function fetch_cc(video_id) {
   let p = new Promise(function(resolve, reject){
@@ -37,7 +60,7 @@ async function fetch_cc(video_id) {
 
   let subtitles = (await p) ?? (await download_cc(video_id));
 
-  console.log(subtitles);
+  return subtitles;
 }
 
 
