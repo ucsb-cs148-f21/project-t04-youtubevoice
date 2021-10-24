@@ -9,9 +9,6 @@ export var YoutubeController = {
 
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
-      if (request.greeting === "hello"){
-          console.log("Working")
-      }
         sendResponse({farewell: "goodbye"});
     }
   );
@@ -104,7 +101,9 @@ document.addEventListener('TimeUpdated', function (event) {
             ts: event.detail,
           }
         }, function(response) {
-        console.log(response);
+            if (!response.ok) {
+                console.log(response);
+            }
       }
     );
 });

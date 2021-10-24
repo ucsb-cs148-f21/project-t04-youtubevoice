@@ -7,15 +7,13 @@ let passSubtitleBackToFront;
 
 chrome.runtime.onMessage.addListener(
   async function(request, sender, sendResponse) {
-    console.log(sender.tab ?
-                "from a content script:" + sender.tab.url :
-                "from the extension");
+    // console.log(sender.tab ?
+    //             "from a content script:" + sender.tab.url :
+    //             "from the extension");
 
-    console.log(request);
-
-    chrome.tabs.sendMessage(sender.tab.id, {greeting: "hello"}, function(resp) {
-      console.log(resp);
-    });
+    // chrome.tabs.sendMessage(sender.tab.id, {greeting: "hello"}, function(resp) {
+    //   console.log(resp);
+    // });
 
     switch (request.command) {
       case "fetch-cc":
@@ -27,8 +25,8 @@ chrome.runtime.onMessage.addListener(
         const local_text = []; 
 
         for (let i = 0; i < local_subtitle.length; i++) {
-          local_time.push( local_subtitle[i].begin);
-          local_text.push( local_subtitle[i].text); 
+          local_time.push(local_subtitle[i].begin);
+          local_text.push(local_subtitle[i].text); 
         }
 
         let goal = 38; // replace this with the actual time stamp from the front 
@@ -43,10 +41,10 @@ chrome.runtime.onMessage.addListener(
         console.log("Testing " + passSubtitleBackToFront);
         console.log(local_text[index_text]);
       case "send-timestamp":
-        console.log("send-timestamp:", request.data);
+        console.log("send-timestamp:", request.data.ts);
     }
 
-    sendResponse({farewell: "goodbye"});
+    sendResponse({ok: true});
   }
 );
 
