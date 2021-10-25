@@ -43,7 +43,6 @@ chrome.runtime.onMessage.addListener(
         if (closet != current_timestamp) {
           current_timestamp = closet;
 
-          console.log("____________", closet)
 
           var temp_closet = 0;
           // TODO ( WANT TO get distcnt value of the text by coimparting the  )

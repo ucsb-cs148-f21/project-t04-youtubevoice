@@ -1,3 +1,5 @@
+import _, {map} from "underscore";
+
 synth = window.speechSynthesis;
 
 
@@ -5,9 +7,10 @@ chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
         switch (request.command) {
             case "speak":
-                var utterance = new SpeechSynthesisUtterance( request.data.line);
+                var strip_string = _.unescape(request.data.line).replace("&#39;", "");
+                var utterance = new SpeechSynthesisUtterance(strip_string);
                 speechSynthesis.speak(utterance);
-                console.log("Speak", request.data.line);
+                console.log("Speak", strip_string);
         }
 
         sendResponse({ok: true});
