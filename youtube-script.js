@@ -7,11 +7,11 @@ export var YoutubeController = {
     player_initialized: false,
 };
 
-chrome.runtime.onMessage.addListener(
-    function(request, sender, sendResponse) {
-        sendResponse({farewell: "goodbye"});
-    }
-  );
+// chrome.runtime.onMessage.addListener(
+//     function(request, sender, sendResponse) {
+//         sendResponse({farewell: "goodbye"});
+//     }
+// );
 
 chrome.runtime.sendMessage(
     {

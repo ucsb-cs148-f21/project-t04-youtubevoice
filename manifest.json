@@ -9,6 +9,7 @@
   "content_scripts": [{
     "all_frames": true,
     "js": [
+        "speech.js",
         "youtube-script.js",
         "inject.js"
     ],
