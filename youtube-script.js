@@ -1,3 +1,4 @@
+
 console.log("Initing youtube script...");
 
 // Global variable for the controller
@@ -6,9 +7,15 @@ export var YoutubeController = {
     player_initialized: false,
 };
 
+// chrome.runtime.onMessage.addListener(
+//     function(request, sender, sendResponse) {
+//         sendResponse({farewell: "goodbye"});
+//     }
+// );
+
 chrome.runtime.sendMessage(
     {
-      command: "fetch-cc",
+      command: "fetch-cc", 
       data: {
         video_id: new URL(window.location.href).searchParams.get("v"),
       }
@@ -34,6 +41,7 @@ YoutubeController.init = function() {
         // );
     });
 
+    // 
     this.observer = new MutationObserver(function(mutationList) {
         for (var i = 0, l = mutationList.length; i < l; i++) {
             var mutation = mutationList[i];
@@ -65,10 +73,12 @@ YoutubeController.init = function() {
     console.log("Initialized.");
 }
 
+// Get's the time
 YoutubeController.getCurrentTime = function() {
     return this.movie_player?.getCurrentTime();
 }
 
+// When player playing then timestamp is fetched
 YoutubeController.onPlayerReady = function() {
     var videotime = null;
 
@@ -82,6 +92,28 @@ YoutubeController.onPlayerReady = function() {
       timeupdater = setInterval(updateTime, 500);
 }
 
+
+document.addEventListener('TimeUpdated', function (event) {
+    chrome.runtime.sendMessage(
+        {
+          command: "send-timestamp", 
+          data: {
+            ts: event.detail,
+          }
+        }, function(response) {
+            if (!response.ok) {
+                console.log(response);
+            }
+      }
+    );
+});
+
+// Executes on timestamp update
 YoutubeController.onTimeUpdated = function(ts) {
-    console.log(ts);
+    document.dispatchEvent(
+        new CustomEvent(
+            "TimeUpdated",
+            {"detail": ts}
+        )
+    );
 }
