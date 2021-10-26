@@ -1,7 +1,7 @@
 # Team Agreements
 
 Team Members: 
-Aditya Gupta, Bisman Sodhi, Haolan Li, Hunter Massey, Kaleb Guo, Lauren Daniel
+Aditya Gupta, Bisman Sodhi, Haolan Li, Hunter Massey, Kaleb Guo
 
 * When a team member is absent, let the team know on the Slack channel as soon as possible, and before the meeting
 * Only skip meetings if absolutely unavoidable
