@@ -1,7 +1,12 @@
 {
   "devDependencies": {
+    "@babel/cli": "^7.16.0",
+    "@babel/core": "^7.16.0",
+    "@babel/preset-env": "^7.16.0",
     "@parcel/config-webextension": "^2.0.0-rc.0",
     "@parcel/transformer-image": "2.0.0-rc.0",
+    "babel-jest": "^27.3.1",
+    "jest": "^27.3.1",
     "parcel": "^2.0.0-rc.0"
   },
   "targets": {
@@ -15,7 +20,8 @@
   },
   "scripts": {
     "start": "parcel manifest.json --target webext-dev --config @parcel/config-webextension",
-    "build": "parcel build manifest.json --config @parcel/config-webextension"
+    "build": "parcel build manifest.json --config @parcel/config-webextension",
+    "test": "jest"
   },
   "dependencies": {
     "fast-xml-parser": "^3.20.3",
