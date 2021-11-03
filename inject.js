@@ -27,3 +27,4 @@ for (var key in YoutubeController) {
 textContent += '};YoutubeController.init();';
 
 injectScript(textContent);
+
