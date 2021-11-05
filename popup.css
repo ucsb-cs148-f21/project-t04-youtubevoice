@@ -1,0 +1,41 @@
+body {
+    background: rgb(226,59,59);
+  background: radial-gradient(circle, rgba(226,59,59,1) 21%, rgba(219,20,20,1) 42%, rgba(158,12,12,1) 98%);
+  }
+  
+  h1 {
+  color: white;
+  text-align: center;
+  min-width: 225px;
+
+  }
+  
+  p {
+  color: white;
+  text-align: center;
+  min-width: 225px;
+  } 
+
+  /* Play Button */
+  .button {
+  background-color: #ffffff;
+  border: none;
+  border-radius: 10%;
+  width: 125px;
+  height: 75px;
+  padding: 16px;
+  text-align: center;
+  text-decoration: None;
+  font-weight: bold;
+  font-size: 20px;
+  color: rgb(219, 20, 20);
+  margin: 10px 10px;
+  cursor: pointer;
+  transition-duration: 0.4s;
+  margin-left: 22.5%;
+  margin-right: 22.5%;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+.button:hover {
+  background-color: #d1d1d1;
+}
