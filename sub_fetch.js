@@ -5,7 +5,9 @@ export default class SubFetch {
         this.lang = lang;
     }
 
-    async fetch(video_id) {
+    async fetch_subtitle(video_id) {
+        console.log("sub_fetch: fetching for", video_id);
+
         let options = {
             attributeNamePrefix : "_",
             attrNodeName: "attr", //default is 'false'
@@ -35,14 +37,15 @@ export default class SubFetch {
         .catch(() => [])
         .then(data => data?.transcript?.text)
         .catch(() => [])
-        .then(data => {
-          data.map(subtitle => ({
+        .then(data => data.map(subtitle => ({
             text: subtitle.node_text,
             begin: subtitle.attr._start,
             duration: subtitle.attr._dur,
           }))
-        })
+        )
         .catch(() => []);
+
+        console.log("sub_fetch: subtitles[0]=", subtitles[0]);
       
         return subtitles;
     }

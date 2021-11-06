@@ -18,8 +18,6 @@ chrome.runtime.onMessage.addListener(
     switch (request.command) {
       case "fetch-cc":
         let local_subtitle = await fetch_cc(request.data.video_id);
-        console.log(local_subtitle);
-        console.log("Hello, this is your text")
 
         for (let i = 0; i < local_subtitle.length; i++) {
           local_time.push(local_subtitle[i].begin);
@@ -57,8 +55,8 @@ chrome.runtime.onMessage.addListener(
               }
             },
             function(resp) {
-            console.log(resp);
-          });
+              console.log("background.js: cmd speak returned", resp);
+            });
         }
     }
 
@@ -81,11 +79,14 @@ async function fetch_cc(video_id) {
 
 
 async function download_cc(video_id) {
-  let subtitles = sub_fetch.fetch(video_id).await;
+  let subtitles = await sub_fetch.fetch_subtitle(video_id);
+  console.log("download_cc: ", subtitles[0]);
 
   let storg = {};
   storg[video_id] = subtitles;
   chrome.storage.local.set(storg, function() {
-    console.log("Subtitle for video " + video_id + " saved");
+    console.log("download_cc: subtitle for video " + video_id + " saved");
   });
+
+  return subtitles;
 }
