@@ -13,6 +13,20 @@ export var YoutubeController = {
 //     }
 // );
 
+
+function func() {
+    alert("The button works");
+    console.log("The button works");
+};
+
+/*
+var clickMe = document.getElementById("btn1");
+function doSomething() {
+    console.log("The button works");
+};
+
+clickMe.onclick = doSomething(); 
+*/
 chrome.runtime.sendMessage(
     {
       command: "fetch-cc", 
