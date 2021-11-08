@@ -1,9 +1,10 @@
 Functionality test:
 
-1)
-2)
-3)
-4)
+1) When the captions are not auto-generated, but are provided by the creator, the extension works
+2) Tested this in the front end by consol.logging the caption.
+3) Tested this in the backend by storing the captions and timestamps in an array.
+4) Tested the video by clicking the play button and watching the video change accent. 
+
 
 Tesiting md:
 
