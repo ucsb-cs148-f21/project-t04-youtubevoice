@@ -9,9 +9,6 @@ function injectScript(string) {
 
 import {YoutubeController} from "./youtube-script.js";
 
-console.log("Begin inject.");
-console.log(YoutubeController);
-
 var textContent = 'var YoutubeController={';
 
 for (var key in YoutubeController) {

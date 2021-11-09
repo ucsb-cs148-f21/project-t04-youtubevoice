@@ -1,92 +1,115 @@
 import SubFetch from "./sub_fetch";
 
+import _ from "underscore";
+
 console.log("Background script working...");
-//const local_text = []; //this was inside function but I moved it because I want to use in into another function to send text from background to content script. 
 
-let sub_fetch = new SubFetch("en");
+let _sub_fetch = new SubFetch("en");
 
-let passSubtitleBackToFront;
-let expected_time ;
-let local_subtitle;
-const local_time = []; 
-const local_text = []; 
+let _subtitle_map = new Map();
+let _tab_video_id_map = new Map();
 
-let current_timestamp;
+let _tab_timestamp_map = new Map();
 
 chrome.runtime.onMessage.addListener(
-  async function(request, sender, sendResponse) {
-    switch (request.command) {
-      case "fetch-cc":
-        let local_subtitle = await fetch_cc(request.data.video_id);
+    function(request, sender, sendResponse) {
+        const tab_id = sender.tab.id;
 
-        for (let i = 0; i < local_subtitle.length; i++) {
-          local_time.push(local_subtitle[i].begin);
-          local_text.push(local_subtitle[i].text); 
+        switch (request.command) {
+            case "fetch-cc": {
+                handle_fetch_cc(tab_id, request.data.video_id)
+                    .then(() => sendResponse({ok: true}));
+            }
+            case "send-timestamp": {
+                handle_send_timestamp(tab_id, request.data.ts)
+                    .then(sendResponse({ok: true}));
+            }
+            default: {
+                sendResponse({ok: false, reason: "UNKNOWN_COMMAND"});
+            }
         }
 
-      case "send-timestamp":
-        expected_time = request.data.ts;
-        let goal = expected_time; // replace this with the actual time stamp from the front 
-
-        var closet = local_time.reduce(function(prev, curr) {
-          return (Math.abs(curr - goal) < Math.abs(prev - goal) ? curr : prev);
-        });
-
-        if (closet != current_timestamp) {
-          current_timestamp = closet;
-
-
-          var temp_closet = 0;
-          // TODO ( WANT TO get distcnt value of the text by coimparting the  )
-         
-            var index_text = local_time.indexOf(closet);
-            
-            //passSubtitleBackToFront[local_text[index_text]]; // = local_text[index_text];
-            passSubtitleBackToFront = local_text[index_text];
-           // console.log("Testing " + passSubtitleBackToFront);
-            //console.log(local_text[index_text]);
-            temp_closet = closet;
-          
-          chrome.tabs.sendMessage(sender.tab.id,
-            {
-              command: "speak",
-              data: {
-                line: local_text[index_text]
-              }
-            },
-            function(resp) {
-              console.log("background.js: cmd speak returned", resp);
-            });
-        }
+        return true;
     }
-
-    sendResponse({ok: true});
-  }
 );
 
 
+async function handle_fetch_cc(tab_id, video_id) {
+    console.log("handle_fetch_cc: tab", tab_id, "and video", video_id);
+
+    _tab_video_id_map.set(tab_id, video_id);
+    _subtitle_map.set(video_id, await fetch_cc(video_id));
+}
+
+async function handle_send_timestamp(tab_id, ts) {
+    const video_id = _tab_video_id_map.get(tab_id);
+    if (video_id === undefined) { // Impossible, but check anyway.
+        console.warn("handle_send_timestamp: send-timestamp cmd received before fetch-cc", tab_id);
+        return;
+    }
+
+    const subtitle = _subtitle_map.get(video_id);
+    if (subtitle === undefined) {
+        console.warn("handle_send_timestamp: subtitle still fetching/not exist for", video_id);
+        return;
+    }
+
+    let closest;
+    for (const e of subtitle) {
+        if (e.begin < ts) {
+            closest = e;
+        }
+    }
+    if (closest === undefined) {
+        return
+    }
+
+    if (closest.begin != _tab_timestamp_map.get(tab_id)) {
+        console.log("handle_send_timestamp: closest", closest);
+
+        _tab_timestamp_map.set(tab_id, closest.begin);
+        
+        chrome.tabs.sendMessage(tab_id,
+        {
+            command: "speak",
+            data: {
+                line: unescape_text(closest.text)
+            }
+        },
+        function(resp) {
+            if (!resp?.ok) {
+                console.warn("handle_send_timestamp: cmd speak returned", resp);
+            }
+        });
+    }
+}
+
 async function fetch_cc(video_id) {
-  let p = new Promise(function(resolve, reject){
-    chrome.storage.local.get([video_id], function(result){
-      resolve(result[video_id]);
-    })
-  });
+    let p = new Promise(function(resolve, reject){
+        chrome.storage.local.get([video_id], function(result){
+            resolve(result[video_id]);
+        })
+    });
 
-  let subtitles = (await p) ?? (await download_cc(video_id));
+    let subtitles = (await p) ?? (await download_cc(video_id));
 
-  return subtitles;
+    return subtitles;
 }
 
 
 async function download_cc(video_id) {
-  let subtitles = await sub_fetch.fetch_subtitle(video_id);
-  console.log("download_cc: ", subtitles[0]);
+    let subtitles = await _sub_fetch.fetch_subtitle(video_id);
 
-  let storg = {};
-  storg[video_id] = subtitles;
-  chrome.storage.local.set(storg, function() {
-    console.log("download_cc: subtitle for video " + video_id + " saved");
-  });
+    let storg = {};
+    storg[video_id] = subtitles;
+    chrome.storage.local.set(storg, function() {
+        console.log("download_cc: subtitle for video " + video_id + " saved");
+    });
 
-  return subtitles;
+    return subtitles;
+}
+
+
+function unescape_text(text) {
+    return _.unescape(text).replace("&#39;", "'").replace("\n", " ");
 }
