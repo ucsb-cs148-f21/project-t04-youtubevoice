@@ -6,14 +6,24 @@
 | 2 | Bisman Sodhi      | Assigned learning tasks.                               | 
 | 3 | Hunter Massey     | Led sprint planning and retrospective and              | 
 | 4 | Kaleb Guo         | Led MVP                                                |
+| 6 | HaoLan Li         | Lead retrospective and technologies                    |
+| 7 | Aditya Gupta      | Led Post-MVP team idea                                 | 
 
 
-Product Owner
-Scrum Master
-Testing/QA Coordinator
-Retro 3 Leader
-UX Coordinator
-Design Document Coordinator
-Deployment Document Coordinator
-User Manual Coordinator
-Final Presentation leader
+Product Owner - Aditya
+
+Scrum Master - Kaleb
+
+Testing/QA Coordinator - HaoLan
+
+Retro 3 Leader - Bisman
+
+UX Coordinator - Hunter
+
+Design Document Coordinator - Kaleb
+
+Deployment Document Coordinator - Bisman
+
+User Manual Coordinator - Hunter
+
+Final Presentation leader - Aditya
