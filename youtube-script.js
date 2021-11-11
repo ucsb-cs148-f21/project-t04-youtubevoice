@@ -1,17 +1,8 @@
-
-console.log("Initing youtube script...");
-
 // Global variable for the controller
 export var YoutubeController = {
     movie_player: {}, // youtube HTML5 player
     player_initialized: false,
 };
-
-// chrome.runtime.onMessage.addListener(
-//     function(request, sender, sendResponse) {
-//         sendResponse({farewell: "goodbye"});
-//     }
-// );
 
 chrome.runtime.sendMessage(
     {
@@ -19,26 +10,15 @@ chrome.runtime.sendMessage(
       data: {
         video_id: new URL(window.location.href).searchParams.get("v"),
       }
-    }, function(response) {
-    console.log(response);
-  }
+    }, function(resp) {
+        if (!resp?.ok) {
+            console.warn("youtube-script.js: cmd fetch-cc returned", resp);
+        }
+    }
 );
 
 YoutubeController.init = function() {
-    console.log(window.location.href);
-
-    window.addEventListener('DOMContentLoaded', function () {
-
-        // chrome.runtime.sendMessage(
-        //     {
-        //       command: "fetch-cc",
-        //       data: {
-        //         video_id: new URL(window.location.href).searchParams.get("v"),
-        //       }
-        //     }, function(response) {
-        //     console.log(response);
-        //   }
-        // );
+    window.addEventListener("DOMContentLoaded", function () {
     });
 
     // 
@@ -46,13 +26,13 @@ YoutubeController.init = function() {
         for (var i = 0, l = mutationList.length; i < l; i++) {
             var mutation = mutationList[i];
 
-            if (mutation.type === 'childList') {
+            if (mutation.type === "childList") {
                 for (var j = 0, k = mutation.addedNodes.length; j < k; j++) {
                     var node = mutation.addedNodes[j],
                         name = node.nodeName,
                         id = node.id;
 
-                    if (id === 'movie_player') {
+                    if (id === "movie_player") {
                         if (!YoutubeController.player_initialized) {
                             YoutubeController.movie_player = node;
                             YoutubeController.player_initialized = true;
@@ -70,7 +50,7 @@ YoutubeController.init = function() {
         subtree: true
     });
 
-    console.log("Initialized.");
+    console.log("youtube-script.js: Initialized.");
 }
 
 // Get's the time
@@ -85,26 +65,26 @@ YoutubeController.onPlayerReady = function() {
     function updateTime() {
         let oldTime = videotime;
         videotime = this.movie_player?.getCurrentTime();
-        if(videotime !== oldTime) {
-          YoutubeController.onTimeUpdated(videotime);
+        if (videotime !== oldTime) {
+            YoutubeController.onTimeUpdated(videotime);
         }
-      }
-      timeupdater = setInterval(updateTime, 500);
+    }
+    timeupdater = setInterval(updateTime, 500);
 }
 
 
-document.addEventListener('TimeUpdated', function (event) {
+document.addEventListener("TimeUpdated", function (event) {
     chrome.runtime.sendMessage(
         {
-          command: "send-timestamp", 
-          data: {
-            ts: event.detail,
-          }
-        }, function(response) {
-            if (!response.ok) {
-                console.log(response);
+            command: "send-timestamp", 
+            data: {
+                ts: event.detail,
             }
-      }
+        }, function(resp) {
+            if (!resp.ok) {
+                console.log("youtube-script.js: cmd send-timestamp returned", resp);
+            }
+        }
     );
 });
 
