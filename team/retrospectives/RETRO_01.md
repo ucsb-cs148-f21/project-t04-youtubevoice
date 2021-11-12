@@ -41,5 +41,25 @@ I think it went fairly well, everyone contributed at least 2 points, and as the 
   based on what you learned today?
 
   Having a plan helped greatly to keep the conversation going. Try to keep everyone on topic and avoid putting blame on a single person, instead encourage thinking as a team.
+  
+  ## Retro Outcome Assessment
+
+* A brief description of what your retro experiment was
+
+We wanted to experiment scheduling times to work/code together outside of class in groups based on what we were working on.
+
+* A brief recap of the metric you planned on using
+
+Our metric was our progress on our MVP, essentially how much we were able to get done.
+
+* The outcome according to the metric now that the next Sprint is done (maybe already for a while).
+
+We finished our MVP goal of taking subtitles and synthesising speech, so this was very successful.
+
+* Your conclusions based on this outcome. You can decide to cement this change going forward, to modify it (start a new experiment), or to discard it and go back to previous procedures.
+
+It was very helpful to organize ourselves into subgroups and plan work sessions. We will definitely continue doing this, and I don't think any modifications are necessary.
+
+
 
 
