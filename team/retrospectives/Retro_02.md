@@ -34,6 +34,14 @@ I used the picture of a sailboat as an artifact, which we used as an analogy for
 A brief assessment of how it went.
 I think it went fairly well, everyone contributed meaningful information, and as the facilitator I stayed objective and impartial. The group was sometimes distracted and there were some off-topic tangents, but I think that's expected from a first retro.
 
-What advice would you give to the next person leading a retro based on what you learned today?
+A brief recap of the metric that we plan to use: 
+We are planning on measuring how much improvements we have made since our MVP presentation. 
 
+The outcome according to the metric: 
+We are slowing making progress. Learning what we have to do and trying it out. 
+
+What advice would you give to the next person leading a retro based on what you learned today?
 Having a plan helped greatly to keep the conversation going. Try to keep everyone on topic and avoid putting blame on a single person, instead encourage thinking as a team.
+
+Conclustion: 
+We used the same boat, wind, anchor analogy from the first retro. It is very helpful and helps analyze the projects in detail. We were able to identify the road blocks and where the product stands currently. It would be helpful to continue with the same anlogy for the next retro. 
