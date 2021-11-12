@@ -6,7 +6,7 @@ We are attempting to answer the question: What if Prof H. had a Russian female a
 
 ## List of basic features to implement:
 
-Voice Transfer on YouTube Videos based on provided video-sample
+Voice Transfer on YouTube Videos based on provided video-sample。
 Takes input video’s subtitle from YouTube URL and outputs a video that plays in the voice of users’ choices. 
 
 
