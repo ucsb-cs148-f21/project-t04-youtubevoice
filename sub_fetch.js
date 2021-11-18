@@ -1,6 +1,8 @@
-var parser = require('fast-xml-parser');
+import { parseSync } from 'subtitle'
 
 export default class SubFetch {
+    static INVIDIOUS_INSTANCES = ["https://invidious.namazso.eu"]
+
     constructor(lang) {
         this.lang = lang;
     }
@@ -8,45 +10,48 @@ export default class SubFetch {
     async fetch_subtitle(video_id) {
         console.log("sub_fetch: fetching for", video_id);
 
-        let options = {
-            attributeNamePrefix : "_",
-            attrNodeName: "attr", //default is 'false'
-            textNodeName : "node_text",
-            ignoreAttributes : false,
-            ignoreNameSpace : false,
-            allowBooleanAttributes : false,
-            parseNodeValue : true,
-            parseAttributeValue : false,
-            trimValues: true,
-            cdataTagName: "__cdata", //default is 'false'
-            cdataPositionChar: "\\c",
-            parseTrueNumberOnly: false,
-            numParseOptions:{
-              hex: true,
-              leadingZeros: true,
-              //skipLike: /\+[0-9]{10}/
-            },
-            arrayMode: false, //"strict"fault is a=>a
-            stopNodes: ["parse-me-as-string"]
-        };
-        
-        let subtitles = await fetch("https://video.google.com/timedtext?lang=" + this.lang + "&v=" + video_id)
-        .then(response => response.text())
-        .catch(() => [])
-        .then(data => parser.parse(data, options))
-        .catch(() => [])
-        .then(data => data?.transcript?.text)
-        .catch(() => [])
-        .then(data => data.map(subtitle => ({
-            text: subtitle.node_text,
-            begin: subtitle.attr._start,
-            duration: subtitle.attr._dur,
-          }))
-        )
-        .catch(() => []);
+        for (const instance_url of SubFetch.INVIDIOUS_INSTANCES) {
+            console.log("sub_fetch: trying instance", instance_url);
 
-        console.log("sub_fetch: subtitles[0]=", subtitles[0]);
-      
-        return subtitles;
+            try {
+                let subtitle = await this.fetch_subtitle_with_instance(video_id, instance_url);
+                return subtitle;
+            } catch (error) {
+                console.warn("sub_fetch: error", error);
+            }
+        }
+
+        throw "no instances usable";
+    }
+
+    async fetch_subtitle_with_instance(video_id, instance_url) {
+        let subtitle_list = await fetch(instance_url + "/api/v1/captions/" + video_id)
+        .then(response => response.json());
+
+        console.log("sub_fetch: list=", subtitle_list);
+        
+        for (const subtitle_item of subtitle_list.captions) {
+            if (subtitle_item.languageCode == this.lang) {
+                // Language found
+                console.log("Subtitle for", video_id, "found: lang=", subtitle_item.label);
+
+                let subtitle = await fetch(instance_url+subtitle_item.url)
+                .then(response => response.text())
+                .then(data => parseSync(data))
+                .then(data => data.filter(item => item.type == "cue").map(item => item.data))
+                .then(data => data.map(line => ({
+                    text: line.text,
+                    begin: line.start / 1000,
+                    duration: (line.end - line.start) / 1000,
+                  }))
+                );
+        
+                console.log("sub_fetch: subtitles[0]=", subtitle[0]);
+
+                return subtitle;
+            }
+        }
+
+        return [];
     }
 }
