@@ -4,17 +4,15 @@
   "version": "1.0",
   "manifest_version": 2,
   "background": {
-    "scripts": ["/background_scripts/sub_fetch.js", "/background_scripts/background.js"]
+    "scripts": ["sub_fetch.js", "background.js"]
   },
   "content_scripts": [{
     "all_frames": true,
     "js": [
-        "/content_scripts/speech.js",
-        "/content_scripts/youtube-script.js",
-        "/content_scripts/inject.js"
-    ],
-    "html": [
-      "/user_interface/settings.html"
+        "speech.js",
+        "youtube-script.js",
+        "inject.js",
+        "settings.html"
     ],
     "matches": [
         "https://www.youtube.com/*"
@@ -33,7 +31,7 @@
   },
   "browser_action": {
     "default_icon": "/images/YTV128.png",
-    "default_popup": "/user_interface/popup.html",
+    "default_popup": "popup.html",
     "default_title:": "Youtube Voice popup."
   }
 }
