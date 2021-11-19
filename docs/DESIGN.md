@@ -11,7 +11,7 @@ We are attempting to answer the question: What if Prof H. had a Russian female a
 
 
 ## User Flow 
-https://ucsb-cs148-f21.slack.com/files/U02G17CN09F/F02MRJJ7W0N/user_flow.jpg
+![design](https://files.slack.com/files-pri/T02FL6XMQGZ-F02MRJJ7W0N/user_flow.jpg)
 
 ## List of basic features to implement:
 
