@@ -12,6 +12,8 @@ We are attempting to answer the question: What if Prof H. had a Russian female a
 ## User Flow 
 ![user_flow](https://user-images.githubusercontent.com/49223428/142575164-e9ed2061-4871-45f1-91a8-8ecc624bd13e.jpeg)
 
+Assuming a user has opened the video they want to watch, they can start Youtube Voice like any other Chrome extension: in the top right corner. Once opened, a user can either begin speech synthesis using the default voice by clicking the play button, or go to the settings page to customize the voice in various ways (WIP). When finished customizing, they can return to the main page and press the play button to hear their preferred voice.
+
 
 
 
