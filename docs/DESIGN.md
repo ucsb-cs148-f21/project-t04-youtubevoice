@@ -45,4 +45,4 @@ Chnge the pitch.
 
 ## Dependency Graph
 
-![design](https://user-images.githubusercontent.com/49223428/141525052-b4e7feee-d668-43ae-915c-842fd61fe421.PNG)
+![image](https://user-images.githubusercontent.com/49223428/142674118-45071ec5-19cd-499b-acca-650107ff422f.png)
