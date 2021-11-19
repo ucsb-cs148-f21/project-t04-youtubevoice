@@ -10,14 +10,17 @@ Retro 1 will include video speed control, subtitle reading, and AI voice, accord
 ```
 
 ```sh
-The team decides to create the accent control in Retro 2, figure out how to console log the background noise, remove the original noise, keep the background noise, and add robotic voice.
+The team decides to create the accent control in Retro 2, figure out how to console log the background noise, 
+remove the original noise, keep the background noise, and add robotic voice.
 After Retro 2, the YouTube API is no longer functional.
 Then, after two weeks of development, the team decides to switch from one YouTube API to another.
 ```
 
 ```sh
-The team decides to add customizable accent control, language control in Retro 3 without background noise cancellation, and keep the YouTube API from destroying itself.
-The team also wishes to refrain from reinventing the wheel on an individual basis, as well as from investigating features that are too advanced for current technology.
+The team decides to add customizable accent control, language control in Retro 3 without background 
+noise cancellation, and keep the YouTube API from destroying itself.
+The team also wishes to refrain from reinventing the wheel on an individual basis, as well as from
+investigating features that are too advanced for current technology.
 ```
 
 
