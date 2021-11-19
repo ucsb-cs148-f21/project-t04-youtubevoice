@@ -1,7 +1,9 @@
 import { parseSync } from 'subtitle'
 
 export default class SubFetch {
-    static INVIDIOUS_INSTANCES = ["https://invidious.namazso.eu"]
+    static INVIDIOUS_INSTANCES = ["https://invidious.namazso.eu",
+    "https://invidious-us.kavin.rocks",
+    "https://invidious.osi.kr"]
 
     constructor(lang) {
         this.lang = lang;
