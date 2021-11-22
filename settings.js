@@ -1,5 +1,21 @@
 document.addEventListener('DOMContentLoaded', function() {
 
+    //functionality for speech censoring
+    var updateButton = document.getElementById('update');
+    var old_txt = document.getElementById('old').value;
+    var new_txt = document.getElementById('new').value;
+    var censorBox = document.getElementById('censor');
+    var censor = document.getElementById('censor').checked
+    censorBox.addEventListener('click', function() {
+      censor = !censor
+    });
+    updateButton.addEventListener('click', function() {
+      old_txt = document.getElementById('old').value;
+      new_txt = document.getElementById('new').value;
+      alert(old_txt + " -> " + new_txt + "; censor: " + censor);
+    });
+
+
     var backButton = document.getElementById('back');
     backButton.addEventListener('click', function() {
 
