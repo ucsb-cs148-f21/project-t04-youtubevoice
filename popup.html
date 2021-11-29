@@ -1,17 +1,41 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width">
+
+    <title>Speech synthesiser</title>
+
     <link rel="stylesheet" href="popup.css">
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
   </head>
+
   <body>
-    <h1>Youtube Voice</h1>
-    <p>Press the button to generate a new voice.</p>
-    <button type="button" class="button" id="play">
-      &#9658
-    </button>
-    <button type="button" class="setbutton" id="settings" style="vertical-align:middle">
-      <span> Settings </span>
-    </button>
-    <script src = "popup.js" ></script>
+    <h1>Speech synthesiser</h1>
+
+    <p> Change voices using the dropdown menu.</p>
+
+    <div>
+      <label for="rate">Rate</label><input type="range" min="0.5" max="2" value="1" step="0.1" id="rate">
+      <div class="rate-value">1</div>
+      <div class="clearfix"></div>
+    </div>
+    <div>
+      <label for="pitch">Pitch</label><input type="range" min="0" max="2" value="1" step="0.1" id="pitch">
+      <div class="pitch-value">1</div>
+      <div class="clearfix"></div>
+    </div>
+    <select>
+
+
+    </select>
+    <div class="controls">
+      <button id="play">Play</button>
+    </div>
+
+    <script src="popup.js"></script>
   </body>
 </html>

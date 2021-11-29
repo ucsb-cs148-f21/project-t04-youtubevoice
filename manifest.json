@@ -9,10 +9,9 @@
   "content_scripts": [{
     "all_frames": true,
     "js": [
-        "speech.js",
         "youtube-script.js",
-        "inject.js",
-        "settings.html"
+        "speech.js",
+        "inject.js"
     ],
     "matches": [
         "https://www.youtube.com/*"
