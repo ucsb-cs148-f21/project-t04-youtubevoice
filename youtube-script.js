@@ -21,7 +21,7 @@ YoutubeController.init = function() {
     window.addEventListener("DOMContentLoaded", function () {
     });
 
-    // 
+    let this2 = this; // Magic?
     this.observer = new MutationObserver(function(mutationList) {
         for (var i = 0, l = mutationList.length; i < l; i++) {
             var mutation = mutationList[i];
@@ -33,10 +33,10 @@ YoutubeController.init = function() {
                         id = node.id;
 
                     if (id === "movie_player") {
-                        if (!YoutubeController.player_initialized) {
-                            YoutubeController.movie_player = node;
-                            YoutubeController.player_initialized = true;
-                            YoutubeController.onPlayerReady();
+                        if (!this2.player_initialized) {
+                            this2.movie_player = node;
+                            this2.player_initialized = true;
+                            this2.onPlayerReady();
                         }
                     }
                 }
@@ -62,11 +62,12 @@ YoutubeController.getCurrentTime = function() {
 YoutubeController.onPlayerReady = function() {
     var videotime = null;
 
+    let this2 = this;
     function updateTime() {
         let oldTime = videotime;
         videotime = this.movie_player?.getCurrentTime();
         if (videotime !== oldTime) {
-            YoutubeController.onTimeUpdated(videotime);
+            this2.onTimeUpdated(videotime);
         }
     }
     timeupdater = setInterval(updateTime, 500);
