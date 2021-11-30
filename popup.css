@@ -10,6 +10,12 @@ body {
   min-width: 225px;
   }
 
+  h2 {
+    color: white;
+    text-align: center;
+    min-width: 200px;
+    }
+
   
   p {
   color: white;
@@ -92,6 +98,32 @@ body {
 .setbutton:hover span:after {
   opacity: 1;
   right: 0;
+}
+
+.updatebutton {
+
+  background-color: #ffffff;
+  border: none;
+  border-radius: 10%;
+  width: 110px;
+  height: 45px;
+  padding: 16px;
+  text-align: center;
+  text-decoration: None;
+  font-weight: bold;
+  font-size: 16px;
+  color: rgb(219, 20, 20);
+  cursor: pointer;
+  transition-duration: 0.4s;
+  margin-bottom: 10px;
+  margin-left: 26%;
+  margin-right: 22.5%;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+
+}
+
+.updatebutton:hover {
+  background-color: #d1d1d1;
 }
 
 /* back button */
@@ -214,3 +246,81 @@ body {
 
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
 .show {display:block;}
+
+input[type=text] {
+  width: 100%;
+  padding: 8px 14px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+
+label{
+  color: white;
+}
+
+/* Customize the label (the container) */
+.container {
+  display: block;
+  position: relative;
+  padding-left: 70px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  cursor: pointer;
+  font-size: 12px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  margin-left: 35px;
+  margin-top: -3px;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+}
+
+.container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+.container input:checked ~ .checkmark {
+  background-color: #ffffff;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.container .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid;
+  border-color: rgb(219, 20, 20);
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
