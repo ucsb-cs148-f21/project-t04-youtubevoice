@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
       alert(old_txt + " -> " + new_txt + "; censor: " + censor);
     });
 
-
+    //back button
     var backButton = document.getElementById('back');
     backButton.addEventListener('click', function() {
 
@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     });
 
+    //accent control
     var accentButton = document.getElementById('accent');
     accentButton.addEventListener('click', function() {
 
@@ -50,6 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
       accentButton.innerHTML = russianButton.innerHTML
     });
 
+    
 // Close the dropdown if the user clicks outside of it
 window.onclick = function(event) {
   if (!event.target.matches('.button') && !event.target.matches('.dropbtn')) {
