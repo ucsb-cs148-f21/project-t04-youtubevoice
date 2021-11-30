@@ -1,5 +1,30 @@
 document.addEventListener('DOMContentLoaded', function() {
 
+    //functionality for speech censoring
+    var updateButton = document.getElementById('update');
+    var old_txt = document.getElementById('old').value;
+    var new_txt = document.getElementById('new').value;
+    var censorBox = document.getElementById('censor');
+    var censor = document.getElementById('censor').checked
+    censorBox.addEventListener('click', function() {
+      censor = !censor
+    });
+    updateButton.addEventListener('click', function() {
+      old_txt = document.getElementById('old').value;
+      new_txt = document.getElementById('new').value;
+      alert(old_txt + " -> " + new_txt + "; censor: " + censor);
+      chrome.tabs.query({active: true, currentWindow: true}, tabs => {
+      chrome.tabs.sendMessage( tabs[0].id,
+        { command: "update", 
+          data: { old: old_txt , new: new_txt, cen: censor}
+        }, 
+        function(response) {
+          console.log(response.farewell);
+        });
+      });
+    });
+
+    //back button
     var backButton = document.getElementById('back');
     backButton.addEventListener('click', function() {
 
@@ -7,6 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     });
 
+    //accent control
     var accentButton = document.getElementById('accent');
     accentButton.addEventListener('click', function() {
 
@@ -34,6 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
       accentButton.innerHTML = russianButton.innerHTML
     });
 
+    
 // Close the dropdown if the user clicks outside of it
 window.onclick = function(event) {
   if (!event.target.matches('.button') && !event.target.matches('.dropbtn')) {

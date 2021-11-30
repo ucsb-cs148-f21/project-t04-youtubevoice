@@ -5,7 +5,24 @@
   </head>
   <body>
     <h1>Settings</h1>
-    <p>Customize your Youtube Voice!</p>
+
+    <h2>Speech censoring</h2>
+
+      <label for="old">Censor this word in speech:</label><br>
+      <input type="text" id="old" name="old"><br>
+      <label for="new">Replacement word (optional):</label><br>
+      <input type="text" id="new" name="new">
+
+    <label class="container">Censor explicit words
+      <input type="checkbox" id = censor>
+      <span class="checkmark"></span>
+    </label>
+
+    <button type="button" class="updatebutton" id="update"style="vertical-align:middle">
+      <span> Update </span>
+    </button>
+
+    <h2>Accent control</h2>
 
     <div class="dropdown">
       <button button type="button" class="dropbtn" id="accent"> Accent </button>
@@ -21,5 +38,6 @@
       <span> Back </span>
     </button>
     <script src = "settings.js" ></script>
+    <script src = "speech.js" ></script>
   </body>
 </html>
