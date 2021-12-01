@@ -77,6 +77,3 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
-voiceSelect.selectedIndex 
-pitch
-rate
