@@ -2,7 +2,7 @@
 Deployment instructions:
 ucsb-cs148-f21/project-t04-youtubevoice/docs/DEPLOY.md
 
-Team:
+## Team
 
 Bisman Sodhi - Everything
 
