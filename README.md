@@ -2,20 +2,7 @@
 Deployment instructions:
 ucsb-cs148-f21/project-t04-youtubevoice/docs/DEPLOY.md
 
-
-## Current Tasks
-
-Bisman Sodhi - Communication channel
-
-Kaleb Guo - Speed Control
-
-Hunter Massey - Communication channel
-
-Haolan Li - Speech synthesis
-
-Aditya Gupta - Speed stuff
-
-## Things to do
+Team:
 
 Bisman Sodhi - Everything
 
