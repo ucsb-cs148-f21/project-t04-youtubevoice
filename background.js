@@ -1,5 +1,5 @@
 import SubFetch from "./sub_fetch";
-
+import DOMPurify from 'dompurify';
 import _ from "underscore";
 
 console.log("Background script working...");
@@ -111,5 +111,6 @@ async function download_cc(video_id) {
 
 
 function unescape_text(text) {
-    return _.unescape(text).replace("&#39;", "'").replace("\n", " ");
+    //return _.unescape(text).replace("&#39;", "'").replace("\n", " ");
+    return DOMPurify.sanitize(dirty);
 }
