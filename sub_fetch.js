@@ -20,7 +20,6 @@ export default class SubFetch {
                 return subtitle;
             } catch (error) {
                 console.warn("sub_fetch: error", error);
-                alert("API is not working right now. Please try again later")
             }
         }
 
