@@ -1,15 +1,18 @@
-let synth = window.speechSynthesis;
-
 let old_txt = [];
 let new_txt = [];
 let censor = false;
 let censored = ["[ __ ]", "fuck", "shit", "bitch", "ass", 
-"cunt", "dick", "motherfucker", "slut", "prick", "asshole"]
+"cunt", "dick", "slut", "prick"]
+
+let voice = 0;
+let rate = 1;
+let pitch = 1;
+var synth = window.speechSynthesis;
 
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
         switch (request.command) {
-            case "update": {
+            case "censor": {
                 if (request.data.old !== "") {
                     old_txt.push(request.data.old);
                     new_txt.push(request.data.new);
@@ -17,10 +20,20 @@ chrome.runtime.onMessage.addListener(
                 } else if (request.data.new !== "") {
                     alert("Update failed: please enter a word to censor.")
                 } else {
-                    alert("Update successful!")
+                    alert ("Update successful!")
                 }
                 censor = request.data.cen;
+                break;
             }
+
+            case "voice": {
+                voice = request.data.voice;
+                rate = request.data.rate;
+                pitch = request.data.pitch;
+                alert("Update successful!")
+                break;
+            }
+
             case "speak": {
                 let line = request.data.line;
                 if (censor === true){
@@ -43,11 +56,13 @@ chrome.runtime.onMessage.addListener(
                 
                 console.log("Speak", line);
 
-                var utterance = new SpeechSynthesisUtterance(line);
-                synth.speak(utterance);
+                var utterThis = new SpeechSynthesisUtterance(line);
+                utterThis.voice = synth.getVoices()[voice];
+                utterThis.pitch = pitch;
+                utterThis.rate = rate;
+                synth.speak(utterThis);
             }
         }
-
         sendResponse({ok: true});
     }
 );
