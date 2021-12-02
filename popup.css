@@ -1,7 +1,8 @@
 body {
-    background: rgb(226,59,59);
+  background: rgb(226,59,59);
   background: radial-gradient(circle, rgba(226,59,59,1) 21%, rgba(219,20,20,1) 42%, rgba(158,12,12,1) 98%);
-  }
+  min-width: 250px;
+}
 
   
   h1 {
@@ -26,7 +27,7 @@ body {
 
  /* standard button */
   .button {
-  background-color: #ffffff;
+  background-color: white;
   border: none;
   border-radius: 10%;
   width: 125px;
@@ -40,8 +41,8 @@ body {
   margin: 10px;
   cursor: pointer;
   transition-duration: 0.4s;
-  margin-left: 22.5%;
-  margin-right: 22.5%;
+  margin-left: 62.5px;
+  margin-right: 62.5px;
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
@@ -52,7 +53,7 @@ body {
 
 /* settings button */
 .setbutton {
-  background-color: #ffffff;
+  background-color: white;
   border: none;
   border-radius: 10%;
   width: 110px;
@@ -66,8 +67,8 @@ body {
   cursor: pointer;
   transition-duration: 0.4s;
   margin: 10px;
-  margin-left: 26%;
-  margin-right: 22.5%;
+  margin-left: 70px;
+  margin-right: 70px;
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
@@ -102,7 +103,7 @@ body {
 
 .updateC {
 
-  background-color: #ffffff;
+  background-color: white;
   border: none;
   border-radius: 10%;
   width: 100px;
@@ -116,8 +117,8 @@ body {
   cursor: pointer;
   transition-duration: 0.4s;
   margin-bottom: 10px;
-  margin-left: 26%;
-  margin-right: 22.5%;
+  margin-left: 75px;
+  margin-right: 75px;
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 
 }
@@ -128,7 +129,7 @@ body {
 
 .updateV {
 
-  background-color: #ffffff;
+  background-color: white;
   border: none;
   border-radius: 10%;
   width: 100px;
@@ -143,8 +144,8 @@ body {
   transition-duration: 0.4s;
   margin-bottom: 10px;
   margin-top: 20px;
-  margin-left: 26%;
-  margin-right: 22.5%;
+  margin-left: 75px;
+  margin-right: 75px;
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 
 }
@@ -155,7 +156,7 @@ body {
 
 /* back button */
 .backbutton {
-  background-color: #ffffff;
+  background-color: white;
   border: none;
   border-radius: 10%;
   width: 110px;
@@ -169,8 +170,8 @@ body {
   cursor: pointer;
   transition-duration: 0.4s;
   margin: 10px;
-  margin-left: 26%;
-  margin-right: 22.5%;
+  margin-left: 70px;
+  margin-right: 70px;
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
@@ -204,75 +205,6 @@ body {
 }
 
 
-/* Dropdown Button */
-.dropbtn {
-  background-color: #ffffff;
-  border: none;
-  border-radius: 10%;
-  width: 125px;
-  height: 75px;
-  padding: 16px;
-  text-align: center;
-  text-decoration: None;
-  font-weight: bold;
-  font-size: 20px;
-  color: rgb(219, 20, 20);;
-  cursor: pointer;
-  transition-duration: 0.4s;
-  margin-top: 10px;
-  margin-left: 40%;
-  margin-right: 22.5%;
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-}
-
-/* Dropdown button on hover & focus */
-.dropbtn:hover, .dropbtn:focus {
-  background-color: #d1d1d1;
-}
-
-
-/* The container <div> - needed to position the dropdown content */
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-/* Dropdown Content (Hidden by Default) */
-.dropdown-content {
-  background-color: #ffffff00;
-  display: none;
-  position: absolute;
-  min-width: 160px;
-  z-index: 1;
-  
-}
-
-/* Links inside the dropdown */
-.dropdown-content button {
-  background-color: #ffffff;
-  border: none;
-  width: 115px;
-  height: 60px;
-  padding: 16px;
-  text-align: center;
-  text-decoration: None;
-  font-weight: bold;
-  font-size: 16px;
-  color: rgb(219, 20, 20);
-  cursor: pointer;
-  transition-duration: 0.4s;
-  margin-top: -2px;
-  margin-left: 34.5%;
-  margin-right: 22.5%;
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-}
-
-/* Change color of dropdown links on hover */
-.dropdown-content button:hover {background-color: #d1d1d1}
-
-/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
-.show {display:block;}
-
 input[type=text] {
   width: 100%;
   padding: 8px 14px;
@@ -281,6 +213,7 @@ input[type=text] {
 }
 
 label{
+  font-size: 14px;
   color: white;
 }
 
@@ -288,7 +221,7 @@ label{
 .container {
   display: block;
   position: relative;
-  padding-left: 70px;
+  padding-left: 80px;
   margin-top: 20px;
   margin-bottom: 30px;
   cursor: pointer;
@@ -308,10 +241,10 @@ label{
   width: 0;
 }
 
-/* Create a custom checkbox */
+/* Checkbox */
 .checkmark {
   position: absolute;
-  margin-left: 35px;
+  margin-left: 45px;
   margin-top: -3px;
   top: 0;
   left: 0;
@@ -325,7 +258,7 @@ label{
 }
 
 .container input:checked ~ .checkmark {
-  background-color: #ffffff;
+  background-color: white;
 }
 
 .checkmark:after {
@@ -351,10 +284,6 @@ label{
   transform: rotate(45deg);
 }
 
-select {
-  width: 83%;
-}
-
 .clearfix {
   clear: both;
 }
@@ -362,7 +291,6 @@ select {
 .rate-value, .pitch-value {
   float: right;
   width: 5%;
-  line-height: 2;
 }
 
 #rate, #pitch {
@@ -373,13 +301,54 @@ select {
 .controls {
   text-align: center;
   margin-top: 10px;
-}
-
-.controls button {
-  padding: 10px;
+  
 }
 
 .custom-select {
   position: relative;
   font-family: Arial;
+  margin-top: 10px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  margin-right: 50px;
+  width: 200px;
+  height: 7px;
+  background: white;
+  border-radius: 5px;
+  background-size: 70% 100%;
+  background-repeat: no-repeat;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: linear-gradient(white, #b3b3b3);
+  cursor: ew-resize;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.pitch-value {
+  color: white;
+  position: relative;
+  bottom: 25px;
+  margin-left: 180px;
+  margin-right: 20px;
+  font-size: 16px;
+
+}
+
+.rate-value {
+  color: white;
+  position: relative;
+  bottom: 25px;
+  margin-left: 180px;
+  margin-right: 20px;
+  font-size: 16px;
+
 }

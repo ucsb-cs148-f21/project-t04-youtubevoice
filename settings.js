@@ -10,6 +10,7 @@ var rateValue = document.querySelector('.rate-value');
 
 var voices = [];
 
+//fill the html dropdown with voice options
 function populateVoiceList() {
   voices = synth.getVoices().sort(function (a, b) {
       const aname = a.name.toUpperCase(), bname = b.name.toUpperCase();
@@ -54,8 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     //update button for pitch, accent, and speed
     var updateV = document.getElementById("updateV");
-    updateV.addEventListener("click", function() {
-      alert("Voice changed!"); 
+    updateV.addEventListener("click", function() { 
       chrome.tabs.query({active: true, currentWindow: true}, tabs => {
         chrome.tabs.sendMessage( tabs[0].id,
           { command: "voice",
@@ -85,7 +85,6 @@ document.addEventListener('DOMContentLoaded', function() {
     updateC.addEventListener('click', function() {
       old_txt = document.getElementById('old').value;
       new_txt = document.getElementById('new').value;
-      alert(old_txt + " -> " + new_txt + "; censor: " + censor);
       chrome.tabs.query({active: true, currentWindow: true}, tabs => {
       chrome.tabs.sendMessage( tabs[0].id,
         { command: "censor", 

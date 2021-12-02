@@ -1,9 +1,9 @@
+//Default values
 let old_txt = [];
 let new_txt = [];
 let censor = false;
 let censored = ["[ __ ]", "fuck", "shit", "bitch", "ass", 
 "cunt", "dick", "slut", "prick"]
-
 let voice = 0;
 let rate = 1;
 let pitch = 1;
@@ -12,6 +12,8 @@ var synth = window.speechSynthesis;
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
         switch (request.command) {
+
+            //censorship settings update
             case "censor": {
                 if (request.data.old !== "") {
                     old_txt.push(request.data.old);
@@ -26,6 +28,7 @@ chrome.runtime.onMessage.addListener(
                 break;
             }
 
+            //voice settings update
             case "voice": {
                 voice = request.data.voice;
                 rate = request.data.rate;
@@ -34,6 +37,7 @@ chrome.runtime.onMessage.addListener(
                 break;
             }
 
+            //speech synthesis
             case "speak": {
                 let line = request.data.line;
                 if (censor === true){
