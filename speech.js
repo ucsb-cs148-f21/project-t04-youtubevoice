@@ -1,4 +1,5 @@
 //Default values
+let play = false;
 let old_txt = [];
 let new_txt = [];
 let censor = false;
@@ -12,6 +13,18 @@ var synth = window.speechSynthesis;
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
         switch (request.command) {
+
+            //play button
+            case "play": {
+                play = request.data.play;
+                break;
+            }
+
+            //check if playing
+            case "checkplay": {
+                sendResponse({status: play});
+                break;
+            }
 
             //censorship settings update
             case "censor": {
@@ -58,13 +71,14 @@ chrome.runtime.onMessage.addListener(
                     }
                 }
                 
-                console.log("Speak", line);
-
-                var utterThis = new SpeechSynthesisUtterance(line);
-                utterThis.voice = synth.getVoices()[voice];
-                utterThis.pitch = pitch;
-                utterThis.rate = rate;
-                synth.speak(utterThis);
+                if (play == true){
+                    console.log("Speak", line);
+                    var utterThis = new SpeechSynthesisUtterance(line);
+                    utterThis.voice = synth.getVoices()[voice];
+                    utterThis.pitch = pitch;
+                    utterThis.rate = rate;
+                    synth.speak(utterThis);
+                }
             }
         }
         sendResponse({ok: true});
