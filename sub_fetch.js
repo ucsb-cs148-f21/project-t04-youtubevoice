@@ -23,6 +23,7 @@ export default class SubFetch {
             }
         }
 
+        alert("Subtitle API not working right now. Please try again later");
         throw "no instances usable";
     }
 
