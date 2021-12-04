@@ -1,3 +1,5 @@
+import DOMPurify from 'dompurify';
+
 import SubFetch from "./sub_fetch";
 
 import _ from "underscore";
@@ -111,5 +113,6 @@ async function download_cc(video_id) {
 
 
 function unescape_text(text) {
-    return _.unescape(text).replace("&#39;", "'").replace("\n", " ");
+    return DOMPurify.sanitize(text);
+    // return _.unescape(text).replace("&#39;", "'").replace("\n", " ");
 }
