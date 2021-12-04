@@ -56,6 +56,10 @@ document.addEventListener('DOMContentLoaded', function() {
     //update button for pitch, accent, and speed
     var updateV = document.getElementById("updateV");
     updateV.addEventListener("click", function() { 
+      updateV.innerHTML = "Updated!";
+      setTimeout(function() {
+        updateV.innerHTML = "Update";
+      }, 4000);
       chrome.tabs.query({active: true, currentWindow: true}, tabs => {
         chrome.tabs.sendMessage( tabs[0].id,
           { command: "voice",
@@ -83,8 +87,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     //update button for censoring
     updateC.addEventListener('click', function() {
+      updateC.innerHTML = "Updated!";
+      setTimeout(function() {
+        updateC.innerHTML = "Update";
+      }, 4000);
       old_txt = document.getElementById('old').value;
       new_txt = document.getElementById('new').value;
+      document.getElementById('old').value = "";
+      document.getElementById('new').value = "";
       chrome.tabs.query({active: true, currentWindow: true}, tabs => {
       chrome.tabs.sendMessage( tabs[0].id,
         { command: "censor", 

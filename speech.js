@@ -31,11 +31,11 @@ chrome.runtime.onMessage.addListener(
                 if (request.data.old !== "") {
                     old_txt.push(request.data.old);
                     new_txt.push(request.data.new);
-                    alert("Update successful!")
+                    console.log("Censor successful.")
                 } else if (request.data.new !== "") {
                     alert("Update failed: please enter a word to censor.")
                 } else {
-                    alert ("Update successful!")
+                    console.log("Censor successful.")
                 }
                 censor = request.data.cen;
                 break;
@@ -46,7 +46,7 @@ chrome.runtime.onMessage.addListener(
                 voice = request.data.voice;
                 rate = request.data.rate;
                 pitch = request.data.pitch;
-                alert("Update successful!")
+                console.log("Voice change successful.")
                 break;
             }
 
