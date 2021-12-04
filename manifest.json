@@ -11,8 +11,7 @@
     "js": [
         "speech.js",
         "youtube-script.js",
-        "inject.js",
-        "settings.html"
+        "inject.js"
     ],
     "matches": [
         "https://www.youtube.com/*"
