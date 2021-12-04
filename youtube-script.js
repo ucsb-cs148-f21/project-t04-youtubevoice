@@ -2,24 +2,13 @@
 export var YoutubeController = {
     movie_player: {}, // youtube HTML5 player
     player_initialized: false,
+    current_video_id: null,
 };
 
-chrome.runtime.sendMessage(
-    {
-      command: "fetch-cc", 
-      data: {
-        video_id: new URL(window.location.href).searchParams.get("v"),
-      }
-    }, function(resp) {
-        if (!resp?.ok) {
-            console.warn("youtube-script.js: cmd fetch-cc returned", resp);
-        }
-    }
-);
-
 YoutubeController.init = function() {
-    window.addEventListener("DOMContentLoaded", function () {
-    });
+    this.updateVideoId();
+
+    window.addEventListener("DOMContentLoaded", function () {});
 
     let this2 = this; // Magic?
     this.observer = new MutationObserver(function(mutationList) {
@@ -53,6 +42,34 @@ YoutubeController.init = function() {
     console.log("youtube-script.js: Initialized.");
 }
 
+YoutubeController.updateVideoId = function() {
+    let new_video_id = new URL(window.location.href).searchParams.get("v");
+    if (new_video_id == null || new_video_id == "") return;
+    if (new_video_id == this.current_video_id) return;
+    this.current_video_id = new_video_id;
+    document.dispatchEvent(
+        new CustomEvent(
+            "VideoIdUpdated",
+            {"detail": new_video_id}
+        )
+    );
+}
+
+document.addEventListener("VideoIdUpdated", function (event) {
+    chrome.runtime.sendMessage(
+        {
+          command: "fetch-cc", 
+          data: {
+            video_id:  event.detail,
+          }
+        }, function(resp) {
+            if (!resp?.ok) {
+                console.warn("youtube-script.js: cmd fetch-cc returned", resp);
+            }
+        }
+    );
+});
+
 // Get's the time
 YoutubeController.getCurrentTime = function() {
     return this.movie_player?.getCurrentTime();
@@ -67,6 +84,7 @@ YoutubeController.onPlayerReady = function() {
         let oldTime = videotime;
         videotime = this.movie_player?.getCurrentTime();
         if (videotime !== oldTime) {
+            this2.updateVideoId();
             this2.onTimeUpdated(videotime);
         }
     }
