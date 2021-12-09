@@ -29,19 +29,21 @@ We are attempting to answer the question: What if Prof H. had a Russian female a
 
 
 ## User Flow 
-![user_flow](https://user-images.githubusercontent.com/49223428/142575164-e9ed2061-4871-45f1-91a8-8ecc624bd13e.jpeg)
+![User Flow Template](https://user-images.githubusercontent.com/77125370/145317827-058d247c-e0c6-43a7-ae3e-bf84a0c94316.jpg)
 
-Assuming a user has opened the video they want to watch, they can start Youtube Voice like any other Chrome extension: in the top right corner. Once opened, a user can either begin speech synthesis using the default voice by clicking the play button, or go to the settings page to customize the voice in various ways (WIP). When finished customizing, they can return to the main page and press the play button to hear their preferred voice.
 
+Assuming a user has opened the video they want to watch, they can start Youtube Voice like any other Chrome extension: in the top right corner. Once opened, a user can either begin speech synthesis using the default voice by clicking the play button, or go to the settings page to customize the voice in various ways. We give users the freedom to play or pause the extension at any point in a video, and whether or not the video is paused. This way, users can pause our extension and continue playing the video. Users can also play the extension while the video is paused, and the speech synthesis will start as soon as the video is played. In addition, a user can change and update their settings regardless of whether the video or extension is playing or not. There are two sections in settings: Voice control and speech censoring. These sections have two separate update buttons so they can be updated individually. Users can change these settings or run speech synthesis at their default values, and click the back button to return to the play button, which will always reflect if a user can play or pause the extension (if the extension is playing, it will have a pause symbol, and vice versa). Users can also safely close the extension after entering their preferred settings and clicking play.
 
 
 
 ## List of basic features to implement:
 
-Voice Transfer on YouTube Videos based on provided video-sampl.
+Voice Transfer on YouTube Videos based on provided video-sample.
 Takes input video’s subtitle from YouTube URL and outputs a video that plays in the voice of users’ choices. 
-Ancent control.
-Chnge the pitch.
+Pause/play button.
+Accent control.
+Chnge the pitch and speed.
+Speech censoring, replacement, and profanity filter.
 
 ## Dependency Graph
 
