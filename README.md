@@ -1,6 +1,6 @@
 
-Deployment instructions:
-ucsb-cs148-f21/project-t04-youtubevoice/docs/DEPLOY.md
+## Deployment instructions:
+https://github.com/ucsb-cs148-f21/project-t04-youtubevoice/blob/44bef498d9965f31c4a278bd4e0ecefa468872ff/docs/DEPLOY.md
 
 ## Team
 
